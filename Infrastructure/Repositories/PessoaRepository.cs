@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Dev.visitante.Domain.Models;
 using Dev.visitante.Infrastructe.Persistence;
 using Microsoft.EntityFrameworkCore;

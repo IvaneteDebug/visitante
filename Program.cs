@@ -1,4 +1,6 @@
 using Dev.visitante.Startup;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 public class Program
 {
@@ -13,4 +15,5 @@ public class Program
             {
                 webBuilder.UseStartup<Startup>();
             });
+            
 }

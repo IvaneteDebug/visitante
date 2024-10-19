@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Dev.visitante.Domain.Models;
 
 namespace Dev.visitante.Infrastructe.Repositories

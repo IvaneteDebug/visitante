@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Dev.visitante.Aplication.Services;
 using Dev.visitante.Domain.Models;
 using Dev.visitante.Infrastructe.Repositories;
@@ -40,7 +43,6 @@ public class PessoaService : IPessoaService
 
     public async Task AtualizarPessoaAsync(int id, Pessoa pessoaAtualizada)
     {
-        // Adicione lógica de validação se necessário
         await _pessoaRepository.AtualizarPessoaAsync(pessoaAtualizada);
     }
 }

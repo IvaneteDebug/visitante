@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Dev.visitante.Domain.Models;
 using Dev.visitante.Infrastructe.Persistence;
 using Microsoft.AspNetCore.Mvc;
@@ -5,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Dev.visitante.UI.Controllers
 {
-    [Route("api/pessoas")]
     [ApiController]
+    [Route("api/pessoas")]
     public class PessoasController : ControllerBase
     {
         private PessoaDbContext _dbContext;
@@ -15,7 +17,7 @@ namespace Dev.visitante.UI.Controllers
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext)); ;
         }
 
-        // Método GET para obter todas as pessoas de forma assíncrona
+        // Método GET para obter todas as pessoas de forma assíncrona.
         [HttpGet]
         public async Task<IActionResult> ObterTodasAsPessoasAsync()
         {
@@ -74,7 +76,7 @@ namespace Dev.visitante.UI.Controllers
         {
             if (id != pessoa.Id)
             {
-                return BadRequest("O ID fornecido na URL não corresponde ao ID no corpo da solicitação.");
+                return BadRequest("O ID fornecido não corresponde ao ID no corpo da solicitação.");
             }
 
             await _dbContext.Pessoas!.AddAsync(pessoa);
@@ -85,7 +87,7 @@ namespace Dev.visitante.UI.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500, new { error = "Falha ao adicionar pessoa no banco de dados." });
+                return StatusCode(500, new { error = "Ocorreu um erro ao processar a solicitação." });
             }
 
             return CreatedAtAction(nameof(GetById), new { id = pessoa.Id }, pessoa);
@@ -101,7 +103,7 @@ namespace Dev.visitante.UI.Controllers
 
                 if (pessoaExistente == null)
                 {
-                    return NotFound(new { message = "Nenhum id/pessoa não encontrado" });
+                    return NotFound(new { message ="Id pessoa não encontrado"});
                 }
 
                 pessoaExistente.Nome = pessoaAtualizada.Nome;
@@ -114,7 +116,7 @@ namespace Dev.visitante.UI.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500, new { error = "Falha ao atualizar pessoa." });
+                return StatusCode(500, new { error = "Ocorreu um erro ao processar a solicitação." });
             }
         }
 
@@ -138,7 +140,7 @@ namespace Dev.visitante.UI.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500, new { error = "Falha ao excluir pessoa." });
+                return StatusCode(500, new { error = "Ocorreu um erro ao processar a solicitação." });
             }
         }
     }

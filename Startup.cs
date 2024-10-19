@@ -2,7 +2,12 @@ using Dev.visitante.Aplication.Services;
 using Dev.visitante.Handlers;
 using Dev.visitante.Infrastructe.Persistence;
 using Dev.visitante.Infrastructe.Repositories;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
 namespace Dev.visitante.Startup
@@ -13,20 +18,20 @@ namespace Dev.visitante.Startup
         {
             Configuration = configuration;
         }
+
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // Configuração para usar SQL
             services.AddDbContext<PessoaDbContext>(options =>
-                options.UseInMemoryDatabase("PessoaDbContext"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")!));
 
-            services.AddControllers(options =>
-            {
-                services.AddSingleton<IPessoaHandlerException, PessoaHandlerException>();
+            services.AddControllers();
 
-                services.AddScoped<IPessoaService, PessoaService>();
-                services.AddScoped<IPessoaRepository, PessoaRepository>();
-            });
+            services.AddSingleton<IPessoaHandlerException, PessoaHandlerException>();
+            services.AddScoped<IPessoaService, PessoaService>();
+            services.AddScoped<IPessoaRepository, PessoaRepository>();
 
             services.AddSwaggerGen(o =>
             {
@@ -40,7 +45,6 @@ namespace Dev.visitante.Startup
                         Email = "ivanetevieira1000@gmail.com"
                     }
                 });
-
             });
         }
 
@@ -58,7 +62,6 @@ namespace Dev.visitante.Startup
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
@@ -67,10 +70,10 @@ namespace Dev.visitante.Startup
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                    name: "default",
+                    pattern: "{controller}/{action}/{id?}",
+                    defaults: new { controller = "Pessoas", action = "Index" });
             });
-
         }
     }
 }

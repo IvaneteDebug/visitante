@@ -1,3 +1,5 @@
+using System;
+
 namespace Dev.visitante.Handlers
 {
     public class PessoaException : Exception
