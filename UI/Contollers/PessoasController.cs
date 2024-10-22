@@ -130,8 +130,6 @@ namespace Dev.visitante.UI.Controllers
             }
             catch (Exception ex)
             {
-                // Log da exceção para saber o que está dando errado, não esquecer de remover depois
-                Console.WriteLine($"Erro: {ex.Message}\nStack Trace: {ex.StackTrace}");
                 return StatusCode(
                     500,
                     new { error = $"Ocorreu um erro ao processar a solicitação: {ex.Message}" }
