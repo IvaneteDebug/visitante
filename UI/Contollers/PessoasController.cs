@@ -1,9 +1,8 @@
 using System;
 using System.Threading.Tasks;
+using Dev.visitante.Aplication.Services;
 using Dev.visitante.Domain.Models;
-using Dev.visitante.Infrastructe.Persistence;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Dev.visitante.UI.Controllers
 {
@@ -11,10 +10,12 @@ namespace Dev.visitante.UI.Controllers
     [Route("api/pessoas")]
     public class PessoasController : ControllerBase
     {
-        private PessoaDbContext _dbContext;
-        public PessoasController(PessoaDbContext dbContext)
+        private readonly IPessoaService _pessoaService;
+
+        public PessoasController(IPessoaService pessoaService)
         {
-            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext)); ;
+            _pessoaService =
+                pessoaService ?? throw new ArgumentNullException(nameof(pessoaService));
         }
 
         // Método GET para obter todas as pessoas de forma assíncrona.
@@ -23,7 +24,8 @@ namespace Dev.visitante.UI.Controllers
         {
             try
             {
-                var pessoas = await _dbContext.Pessoas!.ToListAsync();
+                var pessoas = await _pessoaService.ObterTodasAsPessoasAsync();
+
                 return Ok(pessoas);
             }
             catch (Exception)
@@ -34,11 +36,11 @@ namespace Dev.visitante.UI.Controllers
 
         // Método GET para obter uma pessoa por ID de forma assíncrona.
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> ObterPessoaPorIdAsync(int id)
         {
             try
             {
-                var pessoa = await _dbContext.Pessoas!.FirstOrDefaultAsync(p => p.Id == id);
+                var pessoa = await _pessoaService.ObterPessoaPorIdAsync(id);
 
                 if (pessoa == null)
                 {
@@ -55,14 +57,17 @@ namespace Dev.visitante.UI.Controllers
 
         // Método POST para adicionar uma nova pessoa de forma assíncrona.
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Pessoa pessoa)
+        public async Task<IActionResult> AdicionarPessoaAsync([FromBody] Pessoa pessoa)
         {
             try
             {
-                _ = await _dbContext.Pessoas!.AddAsync(pessoa);
-                await _dbContext.SaveChangesAsync();
+                await _pessoaService.AdicionarPessoaAsync(pessoa);
 
-                return CreatedAtAction(nameof(GetById), new { id = pessoa.Id }, pessoa);
+                return CreatedAtAction(
+                    nameof(ObterPessoaPorIdAsync),
+                    new { id = pessoa.Id },
+                    pessoa
+                );
             }
             catch (Exception)
             {
@@ -70,7 +75,7 @@ namespace Dev.visitante.UI.Controllers
             }
         }
 
-        // Método POST para criar uma nova pessoa com ID específico, tabém de forma assíncrona.
+        // Método POST para criar uma nova pessoa com ID específico, também de forma assíncrona.
         [HttpPost("{id}")]
         public async Task<IActionResult> AdicionarPessoaComIdAsync(int id, [FromBody] Pessoa pessoa)
         {
@@ -79,68 +84,81 @@ namespace Dev.visitante.UI.Controllers
                 return BadRequest("O ID fornecido não corresponde ao ID no corpo da solicitação.");
             }
 
-            await _dbContext.Pessoas!.AddAsync(pessoa);
-
             try
             {
-                await _dbContext.SaveChangesAsync();
+                await _pessoaService.AdicionarPessoaAsync(pessoa);
             }
             catch (Exception)
             {
-                return StatusCode(500, new { error = "Ocorreu um erro ao processar a solicitação." });
+                return StatusCode(
+                    500,
+                    new { error = "Ocorreu um erro ao processar a solicitação." }
+                );
             }
 
-            return CreatedAtAction(nameof(GetById), new { id = pessoa.Id }, pessoa);
+            return CreatedAtAction(nameof(ObterPessoaPorIdAsync), new { id = pessoa.Id }, pessoa);
         }
 
         // Método PUT para atualizar uma pessoa por ID de forma assíncrona.
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Pessoa pessoaAtualizada)
+        public async Task<IActionResult> AtualizarPessoaAsync(
+            int id,
+            [FromBody] Pessoa pessoaAtualizada
+        )
         {
             try
             {
-                var pessoaExistente = await _dbContext.Pessoas!.FindAsync(id);
+                var pessoaExistente = await _pessoaService.ObterPessoaPorIdAsync(id);
 
                 if (pessoaExistente == null)
                 {
-                    return NotFound(new { message ="Id pessoa não encontrado"});
+                    return NotFound(new { message = "Pessoa não encontrada." });
                 }
 
-                pessoaExistente.Nome = pessoaAtualizada.Nome;
-                pessoaExistente.Profissao = pessoaAtualizada.Profissao;
+                pessoaExistente.UpDate(
+                    pessoaAtualizada.Nome,
+                    pessoaAtualizada.Descricao,
+                    pessoaAtualizada.Profissao,
+                    pessoaAtualizada.Idade
+                );
 
-                _dbContext.Pessoas.Update(pessoaExistente);
-                await _dbContext.SaveChangesAsync();
+                await _pessoaService.AtualizarPessoaAsync(id, pessoaAtualizada);
 
-                return Ok(new { Mensagem = "Pessoa atualizada com sucesso", Pessoa = pessoaAtualizada });
+                return Ok(
+                    new { message = "Pessoa atualizada com sucesso", pessoa = pessoaAtualizada }
+                );
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(500, new { error = "Ocorreu um erro ao processar a solicitação." });
+                // Log da exceção para saber o que está dando errado, não esquecer de remover depois
+                Console.WriteLine($"Erro: {ex.Message}\nStack Trace: {ex.StackTrace}");
+                return StatusCode(
+                    500,
+                    new { error = $"Ocorreu um erro ao processar a solicitação: {ex.Message}" }
+                );
             }
         }
 
         // Método DELETE para excluir uma pessoa por ID de forma assíncrona.
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> RemoverPessoaAsync(int id)
         {
             try
             {
-                var pessoa = await _dbContext.Pessoas!.FirstOrDefaultAsync(p => p.Id == id);
+                var pessoaExistente = await _pessoaService.ObterPessoaPorIdAsync(id);
 
-                if (pessoa == null)
+                if (pessoaExistente == null)
                 {
-                    return NotFound(new { message = "Id pessoa não encontrado" });
+                    return NotFound(new { message = "Pessoa não encontrada." });
                 }
 
-                _dbContext.Pessoas!.Remove(pessoa);
-                await _dbContext.SaveChangesAsync();
+                await _pessoaService.RemoverPessoaAsync(id);
 
-                return Ok(new { Mensagem = "Pessoa removida com sucesso", Pessoa = pessoa });
+                return Ok(new { message = "Pessoa removida com sucesso" });
             }
             catch (Exception)
             {
-                return StatusCode(500, new { error = "Ocorreu um erro ao processar a solicitação." });
+                return StatusCode(500, new { error = "Falha ao remover a pessoa." });
             }
         }
     }

@@ -36,18 +36,6 @@ namespace Dev.visitante.Infrastructe.Repositories
             await _dbContext.Pessoas!.AddAsync(pessoa);
             await _dbContext.SaveChangesAsync();
         }
-        public async Task AdicionarPessoaComIdAsync(int id, Pessoa pessoa)
-        {
-            var pessoaExistente = await _dbContext.Pessoas.FirstOrDefaultAsync(p => p.Id == id);
-
-            if (pessoaExistente != null)
-            {
-                throw new InvalidOperationException("Já existe uma pessoa com o mesmo ID.");
-            }
-
-            _dbContext.Pessoas.Add(pessoa);
-            await _dbContext.SaveChangesAsync();
-        }
 
         public async Task RemoverPessoaAsync(int id)
         {
@@ -63,10 +51,15 @@ namespace Dev.visitante.Infrastructe.Repositories
         {
             if (pessoaAtualizada == null)
             {
-                throw new ArgumentNullException(nameof(pessoaAtualizada), "A pessoa atualizada não pode ser nula.");
+                throw new ArgumentNullException(
+                    nameof(pessoaAtualizada),
+                    "A pessoa atualizada não pode ser nula."
+                );
             }
 
-            var pessoaExistente = await _dbContext.Pessoas!.FirstOrDefaultAsync(p => p.Id == pessoaAtualizada.Id);
+            var pessoaExistente = await _dbContext.Pessoas!.FirstOrDefaultAsync(p =>
+                p.Id == pessoaAtualizada.Id
+            );
             if (pessoaExistente != null)
             {
                 pessoaExistente.Nome = pessoaAtualizada.Nome;
@@ -74,6 +67,22 @@ namespace Dev.visitante.Infrastructe.Repositories
 
                 await _dbContext.SaveChangesAsync();
             }
+        }
+
+        public async Task AdicionarPessoaComIdAsync(int id, Pessoa pessoa)
+        {
+            // Verifica se já existe uma pessoa com o mesmo ID
+            var pessoaExistente = await _dbContext.Pessoas.FirstOrDefaultAsync(p => p.Id == id);
+
+            if (pessoaExistente != null)
+            {
+                // Lança exceção se o ID já existir
+                throw new InvalidOperationException("Já existe uma pessoa com o mesmo ID.");
+            }
+
+            // Adiciona a nova pessoa ao banco de dados
+            _dbContext.Pessoas.Add(pessoa);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
