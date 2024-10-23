@@ -75,30 +75,6 @@ namespace Dev.visitante.UI.Controllers
             }
         }
 
-        // Método POST para criar uma nova pessoa com ID específico, também de forma assíncrona.
-        [HttpPost("{id}")]
-        public async Task<IActionResult> AdicionarPessoaComIdAsync(int id, [FromBody] Pessoa pessoa)
-        {
-            if (id != pessoa.Id)
-            {
-                return BadRequest("O ID fornecido não corresponde ao ID no corpo da solicitação.");
-            }
-
-            try
-            {
-                await _pessoaService.AdicionarPessoaAsync(pessoa);
-            }
-            catch (Exception)
-            {
-                return StatusCode(
-                    500,
-                    new { error = "Ocorreu um erro ao processar a solicitação." }
-                );
-            }
-
-            return CreatedAtAction(nameof(ObterPessoaPorIdAsync), new { id = pessoa.Id }, pessoa);
-        }
-
         // Método PUT para atualizar uma pessoa por ID de forma assíncrona.
         [HttpPut("{id}")]
         public async Task<IActionResult> AtualizarPessoaAsync(
