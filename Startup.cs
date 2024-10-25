@@ -1,6 +1,6 @@
 using Dev.visitante.Aplication.Services;
 using Dev.visitante.Handlers;
-using Dev.visitante.Infrastructe.Persistence;
+using Dev.visitante.Infrastructe.Persitence;
 using Dev.visitante.Infrastructe.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Dev.visitante.Domain.Models;
-using Dev.visitante.Infrastructe.Persistence;
+using Dev.visitante.Infrastructe.Persitence;
 using Microsoft.EntityFrameworkCore;
 
 namespace Dev.visitante.Infrastructe.Repositories
@@ -18,12 +18,12 @@ namespace Dev.visitante.Infrastructe.Repositories
 
         public async Task<IList<Pessoa>> ObterTodasAsPessoasAsync()
         {
-            return await _dbContext.Pessoas.ToListAsync();
+            return await _dbContext.Pessoas!.ToListAsync();
         }
 
         public async Task<Pessoa?> ObterPessoaPorIdAsync(int id)
         {
-            return await _dbContext.Pessoas.FirstOrDefaultAsync(p => p.Id == id);
+            return await _dbContext.Pessoas!.FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task AdicionarPessoaAsync(Pessoa pessoa)

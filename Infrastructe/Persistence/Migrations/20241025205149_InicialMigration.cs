@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace visitante.Migrations
+namespace visitante.Infrastructe.Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class InicialMigration : Migration
