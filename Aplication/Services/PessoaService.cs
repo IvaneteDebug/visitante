@@ -11,7 +11,8 @@ public class PessoaService : IPessoaService
 
     public PessoaService(IPessoaRepository pessoaRepository)
     {
-        _pessoaRepository = pessoaRepository ?? throw new ArgumentNullException(nameof(pessoaRepository));
+        _pessoaRepository =
+            pessoaRepository ?? throw new ArgumentNullException(nameof(pessoaRepository));
     }
 
     public async Task<IList<Pessoa>> ObterTodasAsPessoasAsync()
@@ -21,17 +22,13 @@ public class PessoaService : IPessoaService
 
     public async Task<Pessoa> ObterPessoaPorIdAsync(int id)
     {
-        return await _pessoaRepository.ObterPessoaPorIdAsync(id) ?? throw new Exception("Pessoa não encontrada");
+        return await _pessoaRepository.ObterPessoaPorIdAsync(id)
+            ?? throw new Exception("Pessoa não encontrada");
     }
 
     public async Task AdicionarPessoaAsync(Pessoa pessoa)
     {
         await _pessoaRepository.AdicionarPessoaAsync(pessoa);
-    }
-
-    public async Task AdicionarPessoaComIdAsync(int id, Pessoa pessoa)
-    {
-        await _pessoaRepository.AdicionarPessoaComIdAsync(id, pessoa);
     }
 
     public async Task<Pessoa> RemoverPessoaAsync(int id)
