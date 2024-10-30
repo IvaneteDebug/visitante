@@ -17,3 +17,43 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = D:\dev\visitante
 build_property._RazorSourceGeneratorDebug = 
+
+[D:/dev/visitante/VisitanteApp.Blazor/App.razor]
+build_metadata.AdditionalFiles.TargetPath = VmlzaXRhbnRlQXBwLkJsYXpvclxBcHAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/dev/visitante/VisitanteApp.Blazor/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = VmlzaXRhbnRlQXBwLkJsYXpvclxQYWdlc1xDb3VudGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/dev/visitante/VisitanteApp.Blazor/Pages/FetchData.razor]
+build_metadata.AdditionalFiles.TargetPath = VmlzaXRhbnRlQXBwLkJsYXpvclxQYWdlc1xGZXRjaERhdGEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/dev/visitante/VisitanteApp.Blazor/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = VmlzaXRhbnRlQXBwLkJsYXpvclxQYWdlc1xJbmRleC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/dev/visitante/VisitanteApp.Blazor/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = VmlzaXRhbnRlQXBwLkJsYXpvclxTaGFyZWRcU3VydmV5UHJvbXB0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/dev/visitante/VisitanteApp.Blazor/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = VmlzaXRhbnRlQXBwLkJsYXpvclxfSW1wb3J0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/dev/visitante/VisitanteApp.Blazor/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = VmlzaXRhbnRlQXBwLkJsYXpvclxTaGFyZWRcTWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-esec1lelav
+
+[D:/dev/visitante/VisitanteApp.Blazor/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = VmlzaXRhbnRlQXBwLkJsYXpvclxTaGFyZWRcTmF2TWVudS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-ors8bjynmv
+
+[D:/dev/visitante/VisitanteApp.Blazor/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = VmlzaXRhbnRlQXBwLkJsYXpvclxQYWdlc1xFcnJvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/dev/visitante/VisitanteApp.Blazor/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = VmlzaXRhbnRlQXBwLkJsYXpvclxQYWdlc1xfSG9zdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

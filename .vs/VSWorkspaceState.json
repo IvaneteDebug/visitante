@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\Aplication",
-    "\\UI",
     "\\UI\\Contollers"
   ],
-  "SelectedNode": "\\UI\\Contollers\\PessoasController.cs",
+  "SelectedNode": "\\UI",
   "PreviewInSolutionExplorer": false
 }
