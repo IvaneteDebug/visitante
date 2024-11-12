@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Aplication",
-    "\\UI\\Contollers"
+    "\\Domain\\Models"
   ],
-  "SelectedNode": "\\UI",
+  "SelectedNode": "\\Domain",
   "PreviewInSolutionExplorer": false
 }

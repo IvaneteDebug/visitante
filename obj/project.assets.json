@@ -4886,11 +4886,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\dev\\visitante\\Visitante.API.csproj",
+      "projectUniqueName": "D:\\dev\\ProjetoPessoal\\Visitante.API\\Visitante.API.csproj",
       "projectName": "Visitante.API",
-      "projectPath": "D:\\dev\\visitante\\Visitante.API.csproj",
+      "projectPath": "D:\\dev\\ProjetoPessoal\\Visitante.API\\Visitante.API.csproj",
       "packagesPath": "C:\\Users\\SAMSUNGS\\.nuget\\packages\\",
-      "outputPath": "D:\\dev\\visitante\\obj\\",
+      "outputPath": "D:\\dev\\ProjetoPessoal\\Visitante.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\SAMSUNGS\\AppData\\Roaming\\NuGet\\NuGet.Config",

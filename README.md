@@ -18,7 +18,7 @@ Após a publicação, o sistema foi testado por um QA, cujo feedback ajudou a me
 - **CQRS** para separação de operações de leitura e escrita
 - **Testes realizados por QA** para validação de qualidade
 
-# Projeto Visitante
+  Projeto Visitante
 
 Este projeto implementa operações básicas de CRUD (Create, Read, Update, Delete) para gerenciamento de visitantes. Utiliza ASP.NET Core, Entity Framework Core e persistência em memória.
 
@@ -35,6 +35,3 @@ Se você deseja contribuir para este projeto, siga estas etapas:
 7. Abra um Pull Request para revisão.
 
 Fique à vontade para deixar suas sugestões e feedbacks!
-
-
-

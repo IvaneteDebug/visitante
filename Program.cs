@@ -18,9 +18,10 @@ builder.Services.AddDbContext<PessoaDbContext>(options =>
 
 // Configuração dos serviços da aplicação
 builder.Services.AddControllers();
-builder.Services.AddSingleton<IPessoaHandlerException, PessoaHandlerException>();
-builder.Services.AddScoped<IPessoaService, PessoaService>();
-builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
+
+builder.Services
+       .AddAplication();
+
 
 // Configuração do Swagger
 builder.Services.AddSwaggerGen(o =>

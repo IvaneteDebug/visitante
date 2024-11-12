@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BrErOWM4FGE=",
+  "dgSpecHash": "Svo0VhehnvA=",
   "success": true,
-  "projectFilePath": "D:\\dev\\visitante\\Visitante.API.csproj",
+  "projectFilePath": "D:\\dev\\ProjetoPessoal\\Visitante.API\\Visitante.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SAMSUNGS\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\SAMSUNGS\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

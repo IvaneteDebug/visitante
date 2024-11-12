@@ -1,0 +1,8 @@
+D:\dev\ProjetoPessoal\Visitante.API\obj\Debug\net8.0\Visitante.API.csproj.AssemblyReference.cache
+D:\dev\ProjetoPessoal\Visitante.API\obj\Debug\net8.0\Visitante.API.GeneratedMSBuildEditorConfig.editorconfig
+D:\dev\ProjetoPessoal\Visitante.API\obj\Debug\net8.0\Visitante.API.AssemblyInfoInputs.cache
+D:\dev\ProjetoPessoal\Visitante.API\obj\Debug\net8.0\Visitante.API.AssemblyInfo.cs
+D:\dev\ProjetoPessoal\Visitante.API\obj\Debug\net8.0\Visitante.API.csproj.CoreCompileInputs.cache
+D:\dev\ProjetoPessoal\Visitante.API\obj\Debug\net8.0\Visitante.API.MvcApplicationPartsAssemblyInfo.cs
+D:\dev\ProjetoPessoal\Visitante.API\obj\Debug\net8.0\Visitante.API.MvcApplicationPartsAssemblyInfo.cache
+D:\dev\ProjetoPessoal\Visitante.API\obj\Debug\net8.0\Visitante.API.sourcelink.json
