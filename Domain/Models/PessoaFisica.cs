@@ -13,7 +13,6 @@ namespace Dev.visitante.Domain.Models;
         public string Profissao { get; set; } // Profissão pode ser um campo específico para PF?
     }
 
-    // Construtor de PessoaFisica
     public PessoaFisica(string cpf, string profissao, string documento)
         : base(documento)
     {

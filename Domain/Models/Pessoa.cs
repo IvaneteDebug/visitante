@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
-using Dev.visitante.Aplication.Services; // Certifique-se de que o namespace está correto
-using Dev.visitante.Domain.Models; // Namespace para acessar a classe Pessoa e outros enums
-using Microsoft.AspNetCore.Mvc; // Namespace necessário para ASP.NET Core MVC
+using Dev.visitante.Aplication.Services; 
+using Dev.visitante.Domain.Models; 
+using Microsoft.AspNetCore.Mvc; 
 using Visitante.API.Domain.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,7 +10,7 @@ namespace Dev.visitante.Domain.Models;
 
 public class Pessoa
 {
-    // Dados específicos para condomínios
+    // Dados específicos para condomínios Verificar na aula de correção 12/11?
 
     public int Id { get; set; }
 
@@ -18,7 +18,7 @@ public class Pessoa
     public string Nome { get; set; }
 
     [Required(ErrorMessage = "O documento é obrigatório.")]
-    public string Documento { get; set; } // CPF ou CNPJ
+    public string Documento { get; set; } 
 
     [Required(ErrorMessage = "O tipo de pessoa é obrigatório.")]
     public TipoPessoa Tipo { get; set; }
@@ -28,7 +28,7 @@ public class Pessoa
     public DateTime? DataNascimento { get; set; }
     public string Observacao { get; set; }
 
-    // Dados específicos para condomínios
+    // Dados específicos para condomínios, Verificar na aula de correção 12/11w
     public string Bloco { get; set; }
     public string Apartamento { get; set; }
     public string MoradorResponsavel { get; set; }
@@ -76,7 +76,7 @@ public class Pessoa
         DataNascimento = pessoaAlualizada.DataNascimento;
         Observacao = pessoaAlualizada.Observacao;
 
-        // Atualiza dados específicos do condomínio
+        // Atualiza dados específicos do condomínio Verificar na aula de correção 12/11
         Bloco = pessoaAlualizada.Bloco;
         Apartamento = pessoaAlualizada.Apartamento;
         MoradorResponsavel = pessoaAlualizada.MoradorResponsavel;
@@ -93,11 +93,11 @@ public class Pessoa
     {
         if (Tipo == TipoPessoa.Fisica)
         {
-            return Documento.Length == 11; // CPF tem 11 dígitos
+            return Documento.Length == 11; 
         }
         else if (Tipo == TipoPessoa.Juridica)
         {
-            return Documento.Length == 14; // CNPJ tem 14 dígitos
+            return Documento.Length == 14; 
         }
 
         return false;

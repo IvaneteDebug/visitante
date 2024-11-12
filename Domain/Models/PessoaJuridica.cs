@@ -8,9 +8,9 @@ namespace Visitante.API.Domain.Models
 {
     public class PessoaJuridica : Pessoa
     {
-        public string CNPJ { get; set; } // CNPJ específico para Pessoa Jurídica
-        public string RazaoSocial { get; set; } // Razão Social para PJ
-        public string NomeFantasia { get; set; } // Nome Fantasia para PJ
+        public string CNPJ { get; set; } 
+        public string RazaoSocial { get; set; } 
+        public string NomeFantasia { get; set; } 
     }
 
     public PessoaJuridica(string cnpj, string razaoSocial, string nomeFantasia, string documento)

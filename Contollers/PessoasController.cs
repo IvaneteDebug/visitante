@@ -84,16 +84,13 @@ namespace Dev.visitante.UI.Controllers
         {
             try
             {
-                // Obtém a pessoa existente do serviço, já tratando a validação no serviço.
                 var pessoaExistente = await _pessoaService.ObterPessoaPorIdAsync(id);
 
-                // Se a pessoa não foi encontrada, retorna um erro 404
                 if (pessoaExistente == null)
                 {
                     return NotFound(new { message = "Pessoa não encontrada." });
                 }
 
-                // Chama o método UpDate para atualizar os dados da pessoa existente
                 pessoaExistente.UpDate(
                     pessoaAtualizada.Nome,
                     pessoaAtualizada.Observacao,
@@ -114,15 +111,12 @@ namespace Dev.visitante.UI.Controllers
                     pessoaAtualizada.StatusAprovacao
                 );
 
-                // Atualiza os dados no serviço ou no banco de dados
                 await _pessoaService.AtualizarPessoaAsync(pessoaExistente);
 
-                // Retorna a pessoa atualizada com status 200 OK
                 return Ok(pessoaExistente);
             }
             catch (Exception ex)
             {
-                // Caso ocorra algum erro inesperado, retorna um erro 500
                 return StatusCode(
                     500,
                     new { message = "Erro interno do servidor", details = ex.Message }
